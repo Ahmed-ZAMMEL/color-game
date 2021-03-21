@@ -3,10 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { GameModule } from './game/game.module';
+import { HomeModule } from './home/home.module';
 
 
 @NgModule({
@@ -15,10 +18,13 @@ import { GameModule } from './game/game.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     SharedModule,
     UserModule,
-    GameModule
+    GameModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
