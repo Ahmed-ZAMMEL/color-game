@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../../user/models/user';
+import { UserService } from '../../user/service/user.service';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +10,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  private email: string;
+  isConnected: boolean;
 
-  constructor( private route: ActivatedRoute) { }
+  constructor( private userService: UserService) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.email = params['email'];
-    });
+    this.userService.user$.subscribe(user => {
+      this.isConnected = this.userService.user == null ? false : true;
+    })
+    
   }
 
 }

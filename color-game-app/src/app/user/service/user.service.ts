@@ -22,6 +22,7 @@ export class UserService {
     ).subscribe();
   }
 
+
   get user(): User|null {
     return this.userSubject.value;
   }
