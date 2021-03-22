@@ -10,11 +10,14 @@ import { UserService } from '../service/user.service';
 export class LogoutComponent implements OnInit {
 
   logoutError: boolean = false;
+  loading: boolean = false;
+
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
   }
   logout = () => {
+    this.loading = true;
     //Appel service.
     this.userService.logout().subscribe(
       res => {
@@ -24,6 +27,7 @@ export class LogoutComponent implements OnInit {
         this.logoutError = true;
       },
       () => {
+        this.loading = false;
         // Le block onComplete sert à gérer la logique de desinscription à l'observable.
       }
     )

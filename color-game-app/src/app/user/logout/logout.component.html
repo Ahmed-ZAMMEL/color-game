@@ -1,4 +1,9 @@
-<h2>Logout</h2>
-<div *ngIf="logoutError" class="alert alert-danger"> Erreur lors de la déconnexion</div>
-<div  class="alert  alert-primary"> "Voulez vous vraiment vous déconnecter ?"</div>
-<button (click)="logout()" class="btn btn-primary" >Oui</button>
+
+
+  <h2>Logout</h2>
+  <div *ngIf="logoutError" class="alert alert-danger"> Erreur lors de la déconnexion</div>
+  <div  class="alert  alert-primary"> "Voulez vous vraiment vous déconnecter ?"</div>
+  <button (click)="logout()" class="btn btn-primary" >Oui</button>
+  
+<app-loading [loading]="loading">
+</app-loading>

@@ -10,11 +10,13 @@ import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { GameModule } from './game/game.module';
 import { HomeModule } from './home/home.module';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
