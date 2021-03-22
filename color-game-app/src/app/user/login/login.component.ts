@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.credentialError = true;
-        console.log('Error');
       },
       () => {
         // Le block onComplete sert à gérer la logique de desinscription à l'observable.
