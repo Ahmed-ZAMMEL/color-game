@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Credentials } from '../models/credentials';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +11,14 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
   loginForm: any;
-  
-  constructor(private formBuilder: FormBuilder) { }
+  crendential: Credentials;
+  credentialError: boolean = false;
+  constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['name@example.com', Validators.required],
-      password: ['password', Validators.required]
+      email: ['john@doe', [Validators.required, Validators.minLength(6)]],
+      password: ['abcde', [Validators.required, Validators.minLength(5)]]
     });
   }
 
@@ -24,9 +28,25 @@ export class LoginComponent implements OnInit {
 
   //Vérifier les identifiants de l'utilisateur pour se connecter.  
   login = () => {
-    if (this.loginForm.dirty && this.loginForm.valid) {
-      //To do.
-    }
+    console.log('ldqjhdflskghl');
+    this.crendential = {
+      email: this.loginForm.get('email').value,
+      password: this.loginForm.get('password').value
+    };
+    //Appel service.
+    this.userService.login(this.crendential).subscribe(
+      res => {
+        this.router.navigate(['/home/home']);
+      },
+      err => {
+        this.credentialError = true;
+        console.log('Error');
+      },
+      () => {
+        // Le block onComplete sert à gérer la logique de desinscription à l'observable.
+      }
+    )
   }
+
 
 }

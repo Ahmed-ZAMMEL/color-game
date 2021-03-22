@@ -5,6 +5,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserRoutingModule } from './user-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './service/user.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     UserRoutingModule
   ],
-  declarations: [LoginComponent, LogoutComponent]
+  declarations: [LoginComponent, LogoutComponent],
+  providers: [
+    UserService
+  ]
 })
 export class UserModule { }
