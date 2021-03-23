@@ -1,3 +1,31 @@
-<p>
-  new works!
-</p>
+<h2>
+  Login
+</h2>
+
+<form>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="email">rows</label>
+        <input type="email" class="form-control" formControlName="rows">
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="password">cols</label>
+        <input type="password" class="form-control" formControlName="cols">
+      </div>
+    </div>
+  </div>
+</form>
+<table>
+  <tbody>
+    <tr>
+      <!-- une tr par ligne -->
+      <td>
+        <!-- une td par colonne -->
+         <app-case [(color)]="table[row][col]"></app-case>
+      </td>
+    </tr>
+  </tbody>
+</table>
