@@ -36,9 +36,6 @@
       <!-- une tr par ligne -->
       <td *ngFor="let colValue of table[row]; let col = index">
         <!-- une td par colonne -->
-        {{row}}
-        {{col}}
-        {{table[row][col]}}
          <app-case [(color)]="table[row][col]"></app-case>
       </td>
     </tr>
