@@ -9,17 +9,24 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class NewComponent implements OnInit {
 
   gridForm: any;
-  table: string[][];
-  constructor(private formBuilder: FormBuilder, private cd: ChangeDetectorRef) { 
+  table = [[]];
 
+  constructor(private formBuilder: FormBuilder, private cd: ChangeDetectorRef) {
+    this.gridForm = this.formBuilder.group({
+      rowField: ['3', [Validators.required, Validators.minLength(1)]],
+      colField: ['6', [Validators.required, Validators.minLength(1)]]
+    });
+
+    this.gridForm.get("rowField").valueChanges.subscribe(() => this.drawGrid());
+    this.gridForm.get("colField").valueChanges.subscribe(() => this.drawGrid());
   }
 
   ngOnInit() {
-    this.gridForm = this.formBuilder.group({
-      rowField: [3, [Validators.required, Validators.minLength(1)]],
-      colField: [6, [Validators.required, Validators.minLength(1)]]
-    });
+    this.drawGrid();
   }
+
+  get rowField() { return this.gridForm.get('rowField'); }
+  get colField() { return this.gridForm.get('colField'); }
 
   drawGrid = () => {
     let rows: number = this.gridForm.get('rowField').value;
@@ -27,10 +34,14 @@ export class NewComponent implements OnInit {
 
     this.table = null; //Vider la variable table.
     //Recréer le table.
-    this.table = new Array(cols);
-    for(let i=0; i < cols; i++) {
-      this.table[i] = new Array<string>(rows);
+    this.table = new Array(rows);
+    for (let i = 0; i < rows; i++) {
+      this.table[i] = [];
+      for (let j = 0; j < cols; j++) {
+        this.table[i][j] = "";
+      }
     }
+    console.log(this.table);
     // Appeler la detection de changement.
     this.cd.detectChanges();
   }

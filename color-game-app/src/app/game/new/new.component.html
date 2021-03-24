@@ -2,28 +2,43 @@
   Login
 </h2>
 
-<form>
+<form [formGroup]="gridForm">
   <div class="row">
     <div class="col-6">
       <div class="form-group">
-        <label for="email">rows</label>
-        <input type="email" class="form-control" formControlName="rows">
+        <label for="rows">rows</label>
+  
+    <input class="form-control" formControlName="rowField" (click)="drawGrid()">
       </div>
     </div>
     <div class="col-6">
       <div class="form-group">
-        <label for="password">cols</label>
-        <input type="password" class="form-control" formControlName="cols">
+        <label for="cols">cols</label>
+        <input  class="form-control" formControlName="colField" (click)="drawGrid()">
       </div>
     </div>
   </div>
 </form>
 <table>
   <tbody>
-    <tr>
+    <!--
+
+    <tr *ngFor="let row of table">
+      
+      <td *ngFor="let col of table[row]">
+        
+        fgfdgdkhgfjfjgdfj
+         <app-case [(color)]="table[row][col]"></app-case>
+      </td>
+    </tr>
+    -->
+    <tr *ngFor="let rowVal of table; let row = index">
       <!-- une tr par ligne -->
-      <td>
+      <td *ngFor="let colValue of table[row]; let col = index">
         <!-- une td par colonne -->
+        {{row}}
+        {{col}}
+        {{table[row][col]}}
          <app-case [(color)]="table[row][col]"></app-case>
       </td>
     </tr>
